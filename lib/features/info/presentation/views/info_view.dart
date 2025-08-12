@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:metro_app/core/constants/app_constants.dart';
-import 'package:metro_app/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:metro_app/features/info/presentation/views/widgets/info_view_body.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class InfoView extends StatelessWidget {
+  const InfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: beigeColor,
-      body: HomeViewBody(),
+      body: InfoViewBody(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:metro_app/features/home/presentation/views/home_view.dart';
-import 'package:metro_app/features/info/presentation/views/info_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metro_app/features/home/presentation/cubit/info_cubit.dart';
 import 'package:metro_app/features/splash/presentation/views/splash_view.dart';
 
 void main() {
@@ -19,11 +19,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashView(),
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+    
+    return BlocProvider(
+      create: (context) => InfoCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashView(),
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+      ),
     );
   }
 }

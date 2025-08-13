@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:metro_app/core/constants/drop_down_items.dart';
 
 class DropDownWidget extends StatelessWidget {
   const DropDownWidget({
@@ -14,12 +15,8 @@ class DropDownWidget extends StatelessWidget {
   final String label;
   final String hint;
   final void Function(String?)? onChange;
-  final List<String> items = const [
-    'Helwan Station',
-    'Sadat Station',
-    'Giza Station',
-  ];
 
+   
   @override
   Widget build(BuildContext context) {
     return Column(

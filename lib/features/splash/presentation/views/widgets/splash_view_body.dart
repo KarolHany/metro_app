@@ -35,7 +35,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHomeView() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const OnBoardingView()),

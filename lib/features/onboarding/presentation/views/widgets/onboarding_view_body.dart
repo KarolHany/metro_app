@@ -18,7 +18,7 @@ class OnBoardingViewBody extends StatelessWidget {
           SizedBox(height: 40),
           Text(
             'Welcome to Metro Booking',
-            style: Styles.textStyle30.copyWith(fontSize: 24),
+            style: Styles.textStyle50.copyWith(fontSize: 24),
           ),
           SizedBox(height: 20),
           Text(

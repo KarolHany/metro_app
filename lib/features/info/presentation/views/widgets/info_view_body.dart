@@ -8,12 +8,12 @@ class InfoViewBody extends StatelessWidget {
   const InfoViewBody({
     super.key,
     required this.pathOfTrip,
-    required this.description, required this.countOfStations,
+    required this.description,
+    required this.countOfStations,
   });
   final dynamic pathOfTrip;
   final String description;
   final int countOfStations;
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,17 +85,14 @@ class InfoViewBody extends StatelessWidget {
   }
 }
 
-int calculatePrice(int countOfStations){
-   if (countOfStations <= 9) {
-                  return 8;
-                }
-                else if (countOfStations <= 16) {
-                  return 10;
-                }
-                else if (countOfStations <= 23) {
-                  return 15;
-                }
-                else {
-                 return 20;
-                }
+int calculatePrice(int countOfStations) {
+  if (countOfStations <= 9) {
+    return 8;
+  } else if (countOfStations <= 16) {
+    return 10;
+  } else if (countOfStations <= 23) {
+    return 15;
+  } else {
+    return 20;
+  }
 }

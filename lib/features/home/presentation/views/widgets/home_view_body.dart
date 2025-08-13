@@ -42,7 +42,7 @@ class HomeViewBody extends StatelessWidget {
                 color: wightColor,
                 mediaQueryHight: .1,
                 borderRadius: 30,
-                 child: Row(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -54,7 +54,10 @@ class HomeViewBody extends StatelessWidget {
                         style: Styles.textStyle20.copyWith(color: magentaColor),
                       ),
                     ),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.location_on , color: neonColor,)),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.location_on, color: neonColor),
+                    ),
                   ],
                 ),
               ),

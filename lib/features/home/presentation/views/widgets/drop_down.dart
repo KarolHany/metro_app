@@ -11,7 +11,7 @@ class DropDownWidget extends StatelessWidget {
     required this.onChange,
   });
 
-  final IconData icon;
+  final IconButton icon;
   final String label;
   final String hint;
   final void Function(String?)? onChange;
@@ -32,7 +32,7 @@ class DropDownWidget extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           child: Row(
             children: [
-              Icon(icon, color: Colors.grey),
+              icon,
               const SizedBox(width: 8),
               Expanded(
                 child: DropdownSearch<String>(

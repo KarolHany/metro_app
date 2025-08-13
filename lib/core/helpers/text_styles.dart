@@ -23,4 +23,10 @@ abstract class Styles {
     fontFamily: 'Ubuntu',
     color: magentaColor,
   );
+
+  static const textStyle50 = TextStyle(
+    fontSize: 50,
+    fontFamily: 'Ubuntu',
+    color: magentaColor,
+  );
 }

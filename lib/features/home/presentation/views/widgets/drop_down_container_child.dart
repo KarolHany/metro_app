@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metro_app/core/constants/app_constants.dart';
 import 'package:metro_app/core/widgets/custom_buttom.dart';
 import 'package:metro_app/features/home/presentation/cubit/info_cubit.dart';
 import 'package:metro_app/features/home/presentation/views/widgets/drop_down.dart';
@@ -17,7 +18,7 @@ class DropDownContainerChild extends StatelessWidget {
     return Column(
       children: [
         DropDownWidget(
-          icon: Icons.location_on,
+          icon: IconButton(onPressed: (){}, icon: Icon(Icons.location_on ,color: darkRed, )),
           label: 'I\'m leaving from:',
           hint: 'Type a station...',
           onChange: (value) {
@@ -26,7 +27,7 @@ class DropDownContainerChild extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         DropDownWidget(
-          icon: Icons.location_searching,
+          icon: IconButton(onPressed: (){}, icon: Icon(Icons.location_searching , color: darkRed,)),
           label: 'I\'m heading to:',
           hint: 'Type a station...',
           onChange: (value) {

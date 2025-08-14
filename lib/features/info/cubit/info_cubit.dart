@@ -7,18 +7,16 @@ part 'info_state.dart';
 class InfoCubit extends Cubit<InfoState> {
   InfoCubit() : super(InfoLoading());
 
-  final Station station = Station(src: '', dest: '');
+  final StationSrcDest station = StationSrcDest(src: '', dest: '');
 
   getPathOfTrip(String src, String dest) {
     emit(InfoLoading());
     try {
       final route = station.travel(src, dest);
-        final description = station.discribe();
-      emit(InfoSuccess(route: route , description: description));
+      final description = station.discribe();
+      emit(InfoSuccess(route: route, description: description));
     } catch (e) {
       emit(InfoError(errorMessage: e.toString()));
     }
   }
-
-
 }

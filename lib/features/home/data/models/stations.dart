@@ -5,12 +5,12 @@ import 'package:metro_app/features/home/data/models/node.dart';
 import 'package:metro_app/features/home/data/models/pair.dart';
 import 'package:metro_app/features/home/data/models/path_details.dart';
 
-class Station {
+class StationSrcDest {
   final String src;
   final String dest;
   final finalPath = <PathDetails>[];
 
-  Station({required this.src, required this.dest});
+  StationSrcDest({required this.src, required this.dest});
 
   List<Pair<String, String>> travel(String src, String dest) {
     finalPath.clear();

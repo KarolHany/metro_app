@@ -1,6 +1,7 @@
+// features/home/presentation/views/widgets/drop_down.dart
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:metro_app/core/constants/drop_down_items.dart';
+import 'package:metro_app/features/home/data/models/station_lat_long.dart';
 
 class DropDownWidget extends StatelessWidget {
   const DropDownWidget({
@@ -9,14 +10,17 @@ class DropDownWidget extends StatelessWidget {
     required this.label,
     required this.hint,
     required this.onChange,
+    required this.stations,
+    this.value,
   });
 
   final IconButton icon;
   final String label;
   final String hint;
   final void Function(String?)? onChange;
+  final String? value;
+  final List<Station> stations;
 
-   
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,14 +46,17 @@ class DropDownWidget extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: "Search station...",
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search),
                       ),
                     ),
                     menuProps: MenuProps(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  items: (filter, loadProps) => items,
+                  selectedItem: value,
+                  items: (filter, loadProps) {
+                    return stations.map((s) => s.name).toList();
+                  },
                   dropdownBuilder: (context, selectedItem) {
                     return Text(
                       selectedItem ?? hint,

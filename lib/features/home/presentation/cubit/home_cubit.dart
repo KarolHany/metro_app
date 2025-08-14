@@ -1,11 +1,13 @@
 // features/home/cubit/home_cubit.dart
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:metro_app/features/home/data/models/station_lat_long.dart';
+import 'package:http/http.dart' as http;
 
 part 'home_state.dart';
 
@@ -152,27 +154,69 @@ class HomeCubit extends Cubit<HomeState> {
     return nearest;
   }
 
-  findNearestStationFromPlace(String position) async {
+  Future<void> findNearestStationFromPlace(String position) async {
+    emit(HomeLoading());
+    try {
+      double queryLat;
+      double queryLng;
+
+      try {
+        final List<Location> locations = await locationFromAddress('$position, Egypt');
+        if (locations.isEmpty) {
+          throw Exception('No results from geocoding');
+        }
+        queryLat = locations.first.latitude;
+        queryLng = locations.first.longitude;
+      } catch (_) {
+        final coords = await _geocodeWithNominatim('$position, Egypt');
+        queryLat = coords.$1;
+        queryLng = coords.$2;
+      }
+
+      final Station nearest = _findNearestStationToPoint(queryLat, queryLng);
+      emit(HomePlaceFound(nearestStation: nearest.name, lat: nearest.lat, lng: nearest.lng));
+    } catch (e) {
+      emit(HomeError('Could not find nearest station for "$position": ${e.toString()}'));
+    }
+  }
+
+  Station _findNearestStationToPoint(double latitude, double longitude) {
     Station nearest = stations.first;
     double minDistance = double.maxFinite;
-    List<Location> locations = await locationFromAddress('$position, Egypt');
-    for (var station in stations) {
-      final distance = Geolocator.distanceBetween(
-        locations.first.latitude,
-        locations.first.longitude,
+    for (final station in stations) {
+      final double distance = Geolocator.distanceBetween(
+        latitude,
+        longitude,
         station.lat,
         station.lng,
       );
-
       if (distance < minDistance) {
         minDistance = distance;
         nearest = station;
-        emit(HomePlaceFound(nearestStation: nearest.name, lat: nearest.lat, lng: nearest.lng));
       }
-      
     }
-    
     return nearest;
+  }
+
+  Future<(double, double)> _geocodeWithNominatim(String query) async {
+    final uri = Uri.parse('https://nominatim.openstreetmap.org/search?q=${Uri.encodeQueryComponent(query)}&format=json&limit=1');
+    final response = await http.get(
+      uri,
+      headers: {
+        'User-Agent': 'metro_app/1.0 (https://example.com)'
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Geocoding request failed (${response.statusCode})');
+    }
+    final List<dynamic> data = json.decode(response.body) as List<dynamic>;
+    if (data.isEmpty) {
+      throw Exception('No results from geocoding service');
+    }
+    final Map<String, dynamic> first = data.first as Map<String, dynamic>;
+    final double lat = double.parse(first['lat'] as String);
+    final double lon = double.parse(first['lon'] as String);
+    return (lat, lon);
   }
 
   

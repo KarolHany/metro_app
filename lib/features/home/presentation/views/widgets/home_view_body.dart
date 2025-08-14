@@ -6,6 +6,7 @@ import 'package:metro_app/core/widgets/custom_buttom.dart';
 import 'package:metro_app/core/widgets/custom_container.dart';
 import 'package:metro_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:metro_app/features/home/presentation/views/widgets/drop_down_container_child.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeViewBody extends StatelessWidget {
   HomeViewBody({super.key});
@@ -64,11 +65,36 @@ class HomeViewBody extends StatelessWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: () {
-                              context.read<HomeCubit>().getNearestStation();
-                            },
-                            icon: Icon(Icons.location_on, color: neonColor),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  context.read<HomeCubit>().getNearestStation();
+                                },
+                                icon: Icon(Icons.location_on, color: neonColor),
+                              ),
+                              IconButton(
+                                onPressed: state is HomeLoaded
+                                    ? () async {
+                                        final uri = Uri.parse(
+                                            'https://www.google.com/maps/dir/?api=1&destination='
+                                            '${state.lat},${state.lng}&travelmode=walking');
+                                        final ok = await launchUrl(
+                                          uri,
+                                          mode: LaunchMode.externalApplication,
+                                        );
+                                        if (!ok) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            const SnackBar(content: Text('Could not open Maps')),
+                                          );
+                                        }
+                                      }
+                                    : null,
+                                icon: const Icon(Icons.map),
+                                color: magentaColor,
+                                tooltip: 'Route to nearest station',
+                              ),
+                            ],
                           ),
                         ],
                       ),

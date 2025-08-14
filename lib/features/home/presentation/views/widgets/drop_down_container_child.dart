@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metro_app/core/constants/app_constants.dart';
 import 'package:metro_app/core/widgets/custom_buttom.dart';
-import 'package:metro_app/features/home/presentation/cubit/info_cubit.dart';
+import 'package:metro_app/features/info/cubit/info_cubit.dart';
 import 'package:metro_app/features/home/presentation/views/widgets/drop_down.dart';
 import 'package:metro_app/features/info/presentation/views/info_view.dart';
 

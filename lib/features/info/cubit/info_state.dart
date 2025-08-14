@@ -16,11 +16,6 @@ class InfoSuccess extends InfoState {
   }) : super(route: route, description: description);
 }
 
-// class InfoDescriptionSuccess extends InfoState {
-//   InfoDescriptionSuccess({required String description})
-//     : super(description: description);
-// }
-
 class InfoError extends InfoState {
   InfoError({required String errorMessage}) : super(errorMessage: errorMessage);
 }

@@ -20,13 +20,5 @@ class InfoCubit extends Cubit<InfoState> {
     }
   }
 
-  // getDescription() {
-  //   emit(InfoLoading());
-  //   try {
-    
-  //     emit(InfoDescriptionSuccess(description: description));
-  //   } catch (e) {
-  //     emit(InfoError(errorMessage: e.toString()));
-  //   }
-  // }
+
 }

@@ -48,8 +48,8 @@ final List<String> items = const [
   'Ataba',
   'Al-Shohadaa',
   'Massara',
-  'Rod El-Farag'
-      'St. Teresa',
+  'Rod El-Farag',
+  'St. Teresa',
   'El-Khalafawy',
   'El-Mezallat',
   'Kolleyyet El-Zeraa',

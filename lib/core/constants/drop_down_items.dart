@@ -17,7 +17,6 @@ final List<String> items = const [
   'El-Malek El-Saleh',
   'Al-Sayeda Zeinab',
   'Saad Zaghloul',
-  'Sadat',
   'Nasser',
   'Orabi',
   'Al-Shohadaa',

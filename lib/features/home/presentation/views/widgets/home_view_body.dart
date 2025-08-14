@@ -42,7 +42,7 @@ class HomeViewBody extends StatelessWidget {
                 const SizedBox(height: 40),
                 Text(
                   'The Nearest Station to Your Current Location',
-                  style: Styles.textStyle16.copyWith(color: magentaColor),
+                  style: Styles.textStyle18.copyWith(color: magentaColor),
                 ),
                 const SizedBox(height: 15),
                 BlocBuilder<HomeCubit, HomeState>(
@@ -105,14 +105,14 @@ class HomeViewBody extends StatelessWidget {
                 const SizedBox(height: 20),
                 Text(
                   'Find Nearest Station to Any Place',
-                  style: Styles.textStyle16.copyWith(color: magentaColor),
+                  style: Styles.textStyle18.copyWith(color: magentaColor),
                 ),
                 const SizedBox(height: 15),
                 TextField(
                   controller: placeController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Enter any place in Cairo (e.g., Tahrir Square)',
+                    hintText: 'Enter any place in Cairo',
                     suffixIcon: Icon(Icons.search),
                   ),
                 ),
@@ -120,7 +120,7 @@ class HomeViewBody extends StatelessWidget {
                 BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) {
                     return CustomButtom(
-                      text: 'Find Nearest Station',
+                      text: 'Submit',
                       onPressed: () {
                         if (placeController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(

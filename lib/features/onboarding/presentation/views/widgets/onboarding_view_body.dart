@@ -14,7 +14,7 @@ class OnBoardingViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 40),
-          Expanded(child: Image.asset(AssetsData.onboarding)),
+          Expanded(child: Image.asset(AssetsData.onboardingImage)),
           SizedBox(height: 40),
           Text(
             'Welcome to Metro Booking',

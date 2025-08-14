@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metro_app/core/constants/app_constants.dart';
 import 'package:metro_app/features/onboarding/presentation/views/widgets/onboarding_view_body.dart';
 
 class OnBoardingView extends StatelessWidget {
@@ -6,6 +7,8 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: OnBoardingViewBody());
+    return const Scaffold(
+      backgroundColor: wightColor,
+      body: OnBoardingViewBody());
   }
 }

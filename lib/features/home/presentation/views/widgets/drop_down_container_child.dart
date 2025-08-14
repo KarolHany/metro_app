@@ -69,6 +69,13 @@ class _DropDownContainerChildState extends State<DropDownContainerChild> {
                   const SnackBar(content: Text('Please select both stations')),
                 );
                 return;
+              } else if (fromStation == toStation) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Please select the different stations'),
+                  ),
+                );
+                return;
               }
               context.read<InfoCubit>().getPathOfTrip(fromStation, toStation);
               Navigator.push(

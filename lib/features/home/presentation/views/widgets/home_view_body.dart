@@ -17,7 +17,15 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit(),
-      child: SafeArea(
+      child: BlocListener<HomeCubit, HomeState>(
+        listener: (context, state) {
+          if (state is HomeError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.message)),
+            );
+          }
+        },
+        child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
@@ -142,6 +150,8 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ),
+  );
+    
   }
 }

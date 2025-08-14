@@ -126,7 +126,7 @@ class HomeCubit extends Cubit<HomeState> {
       );
 
       Station nearest = _findNearestStation(position);
-      emit(HomeLoaded(nearestStation: nearest.name));
+      emit(HomeLoaded(nearestStation: nearest.name, lat: nearest.lat, lng: nearest.lng));
     } catch (e) {
       emit(HomeError('Could not get location: ${e.toString()}'));
     }
@@ -167,7 +167,7 @@ class HomeCubit extends Cubit<HomeState> {
       if (distance < minDistance) {
         minDistance = distance;
         nearest = station;
-        emit(HomePlaceFound(nearestStation: nearest.name));
+        emit(HomePlaceFound(nearestStation: nearest.name, lat: nearest.lat, lng: nearest.lng));
       }
       
     }
